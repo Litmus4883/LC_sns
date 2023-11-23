@@ -14,6 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            //idメソッドはbigIncrementsメソッドのエイリアス
+            //したがって、id()とbigIncrement('id')はどちらでもよい
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -21,6 +23,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
