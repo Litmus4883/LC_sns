@@ -19,7 +19,7 @@ return new class extends Migration
         
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('post');
+            $table->string('comment');
             $table->timestamps($precision = 0);
             $table->softDeletes();
             $table->foreignId('user_id')->nullable();
