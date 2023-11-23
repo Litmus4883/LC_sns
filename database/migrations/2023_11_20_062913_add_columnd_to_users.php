@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('users')){
-            return;
-        }
-        
         Schema::table('users', function (Blueprint $table) {
-            $table->text('declaration');
+            $table->string('declaration');
             $table->foreignId('post_id')->nullable();
             $table->foreignId('reply_id')->nullable();
             $table->foreignId('profile_id')->nullable();

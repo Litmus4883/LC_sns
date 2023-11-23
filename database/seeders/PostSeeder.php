@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
     public function run(): void
     {
         DB::table('posts')->insert([
-            'post' => Str::random(3),
+            'comment' => Str::random(3),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);
