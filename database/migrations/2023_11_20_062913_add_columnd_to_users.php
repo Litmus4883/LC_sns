@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('declaration');
+            $table->string('declaration')->nullable();
             $table->foreignId('post_id')->nullable();
             $table->foreignId('reply_id')->nullable();
             $table->foreignId('profile_id')->nullable();
