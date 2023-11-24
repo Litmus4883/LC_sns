@@ -6,6 +6,10 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
+    <x-app-layout>
+        <x-slot name="header">
+            <h2>{{ __('Index') }}</h2>
+        </x-slot>
     <body>
         <h1>Blog Name</h1>
         <div class='posts'>
@@ -21,4 +25,5 @@
             {{ $posts->links() }}
         </div>
     </body>
+    </x-app-layout>
 </html>
