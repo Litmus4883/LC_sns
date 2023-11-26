@@ -16,7 +16,9 @@
             <!--ここの$postsはPostControllerで指定した変数-->
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h2 class='comment'>{{ $post->comment }}</h2>
+                    <h2 class='comment'>
+                        <a href="/posts/{{ $post->id }}">{{ $post->comment }}</a>
+                    </h2>
                     <div class='images'>{{ $post->image }}</div>
                 </div>
             @endforeach
