@@ -24,6 +24,7 @@
         <div class='paginate'>
             {{ $posts->links() }}
         </div>
+        <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
     </body>
     </x-app-layout>
 </html>
