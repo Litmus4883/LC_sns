@@ -11,6 +11,11 @@ class PostController extends Controller
     {
         //$post->get()で全件取得
         return view('posts.index')->with(['posts' => $post->getPaginateByLimit()]);
-        
+    }
+    
+    #ルーティングで呼び出される関数の引数に該当のModelクラスを追加
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);
     }
 }
