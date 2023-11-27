@@ -8,7 +8,7 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h2>{{ __('show') }}</h2>
+            <h2>{{ __('投稿詳細') }}</h2>
         </x-slot>
     <body>
         <h1>Blog Name</h1>
