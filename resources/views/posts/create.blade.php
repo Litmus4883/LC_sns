@@ -17,7 +17,8 @@
             <div class='post'>
                 <div class='comment'>
                     <h2>コメント</h2>
-                    <input type="text" name="post[comment]" placeholder="コメント">
+                    <input type="text" name="post[comment]" placeholder="コメント" value="{{ old('post.comment') }}"/>
+                    <p class="comment_error" style="color:red">{{ $errors->first('post.comment') }}</p>
                 </div>
                 <div class='image'>
                     <h2>画像</h2>

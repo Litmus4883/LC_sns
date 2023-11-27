@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -25,7 +26,7 @@ class PostController extends Controller
     }
     
     #Post $postで空のpostインスタンスを利用
-    public function store(Request $request, Post $post)
+    public function store(PostRequest $request, Post $post): RedirectResponse
     {
         #$input = ['comment' => 'コメント']
         $input = $request['post'];
