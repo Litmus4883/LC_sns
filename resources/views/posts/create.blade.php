@@ -8,17 +8,26 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h2>{{ __('投稿詳細') }}</h2>
+            <h2>{{ __('投稿作成') }}</h2>
         </x-slot>
     <body>
         <h1>Blog Name</h1>
+        <form action="/posts" method="post">
+            @csrf
             <div class='post'>
-                <h1 class='comment'>{{ $post->comment }}</h1>
-                <div class='images'>{{ $post->image }}</div>
+                <div class='comment'>
+                    <h2>コメント</h2>
+                    <input type="text" name="post[comment]" placeholder="コメント">
+                </div>
+                <div class='image'>
+                    <h2>画像</h2>
+                </div>
+                <input type="submit" value="store"/>
             </div>
-            <div class="footer">
-                <a href="/">戻る</a>
-            </div>
+        </form>
+        <div class="footer">
+            <a href="/">戻る</a>
+        </div>
         <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
     </body>
     </x-app-layout>

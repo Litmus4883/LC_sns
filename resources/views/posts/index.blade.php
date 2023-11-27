@@ -8,10 +8,11 @@
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <h2>{{ __('Index') }}</h2>
+            <h2>{{ __('投稿一覧') }}</h2>
         </x-slot>
     <body>
         <h1>Blog Name</h1>
+        <a href='/posts/create'>新規作成</a>
         <div class='posts'>
             <!--ここの$postsはPostControllerで指定した変数-->
             @foreach ($posts as $post)

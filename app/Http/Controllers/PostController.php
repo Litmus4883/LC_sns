@@ -18,4 +18,19 @@ class PostController extends Controller
     {
         return view('posts.show')->with(['post' => $post]);
     }
+    
+    public function create(Post $post)
+    {
+        return view('posts.create');
+    }
+    
+    #Post $postで空のpostインスタンスを利用
+    public function store(Request $request, Post $post)
+    {
+        #$input = ['comment' => 'コメント']
+        $input = $request['post'];
+        #create($input)とfill($input)->save()は同じ
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
 }
