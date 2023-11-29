@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,11 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/create', 'create')->name('create');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts', 'store')->name('store');
+});
+
+Route::controller(ReplyController::class)->group(function() {
+    Route::post('/posts/{post}/replies', 'store');
+    Route::get('/replies/{reply_id}', 'destroy');
 });
 
 Route::middleware('auth')->group(function () {

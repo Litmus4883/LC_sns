@@ -31,7 +31,7 @@ class PostController extends Controller
         #$input = ['comment' => 'コメント']
         $input = $request['post'];
         #create($input)とfill($input)->save()は同じ
-        $post->fill($input)->save();
+        $post->create($input);
         return redirect('/posts/' . $post->id);
     }
 }

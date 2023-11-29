@@ -19,4 +19,9 @@ class Post extends Model
     protected $fillable = [
         'comment',
     ];
+    
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }
