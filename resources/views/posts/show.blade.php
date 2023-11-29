@@ -11,10 +11,30 @@
             <h2>{{ __('投稿詳細') }}</h2>
         </x-slot>
     <body>
-        <h1>Blog Name</h1>
+        
             <div class='post'>
+                <h1>Body</h1>
                 <h1 class='comment'>{{ $post->comment }}</h1>
                 <div class='images'>{{ $post->image }}</div>
+            </div>
+            <div class="card-body line-height">
+                <a class="light-color post-time no-text-decoration" href="/posts/{{ $post->id }}">{{ $post->created_at }}</a>
+                <hr>
+                <div class="row actions" id="reply-form-post-{{ $post->id }}">
+                    <form class="w-100" id="new_reply" action="/posts/{{ $post->id }}/replies" accept-charset="UTF-8" data-remote="true" method="post">
+                        <input name="utf8" type="hidden" value="&#x2713;" />
+                        @csrf
+                        <input value="{{ $post->id }}" type="hidden" name="post_id" />
+                        <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
+                        <input class="form-control reply-input border-0" placeholder="リプライ..." autocomplete="off" type="text" name="reply" />
+                        <input type="submit" value="store"/>
+                    </form>
+                </div>
+            </div>
+            <div>
+                @foreach($post->replies as $reply)
+                <p>{{ $reply->reply}}</p>
+                @endforeach
             </div>
             <div class="footer">
                 <a href="/">戻る</a>
