@@ -23,9 +23,9 @@ return new class extends Migration
             $table->timestamps($precision = 0);
             $table->softDeletes();
             $table->foreignId('user_id')->nullable();
-            $table->foreignId('image_id')->nullable();
-            $table->foreignId('reply_id')->nullable();
-            $table->foreignId('tug_id')->nullable();
+            #$table->foreignId('image_id')->nullable();
+            #$table->foreignId('reply_id')->nullable();
+            #$table->foreignId('tug_id')->nullable();
         });
     }
 
