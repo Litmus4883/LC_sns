@@ -18,8 +18,8 @@ return new class extends Migration
         }
             
         Schema::create('post_tug', function (Blueprint $table) {
-            $table->foreignId('post_id')->nullable()->constrained('posts');
-            $table->foreignId('tug_id')->nullable()->constrained('tugs');
+            $table->foreignId('post_id')->nullable()->cascadeOnDelete();
+            $table->foreignId('tug_id')->nullable()->cascadeOnDelete();
             $table->primary(['post_id', 'tug_id']);
         });
     }

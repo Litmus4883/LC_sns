@@ -23,6 +23,14 @@
                 <div class='image'>
                     <h2>画像</h2>
                 </div>
+                <div class="tugs">
+                    <h2>タグ</h2>
+                    <select name="post[tug_id]">
+                        @foreach($tugs as $tug)
+                            <option value="{{ $tug->id }}">{{ $tug->tug }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <input type="submit" value="store"/>
             </div>
         </form>

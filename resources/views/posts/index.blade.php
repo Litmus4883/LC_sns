@@ -21,8 +21,13 @@
                         <a href="/posts/{{ $post->id }}">{{ $post->comment }}</a>
                     </h2>
                     <div class='images'>{{ $post->image }}</div>
+                    
+                    @foreach($post->tugs as $tug)
+                    <a href="">{{ $tug->tug }}</a>
+                    @endforeach
                 </div>
             @endforeach
+            
         </div>
         <div class='paginate'>
             {{ $posts->links() }}

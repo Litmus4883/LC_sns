@@ -16,6 +16,7 @@
                 <h1>Body</h1>
                 <h1 class='comment'>{{ $post->comment }}</h1>
                 <div class='images'>{{ $post->image }}</div>
+                <a href="">{{ $post->tug->tug }}</a>
             </div>
             <div class="card-body line-height">
                 <a class="light-color post-time no-text-decoration" href="/posts/{{ $post->id }}">{{ $post->created_at }}</a>
