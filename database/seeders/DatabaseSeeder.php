@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             ImageSeeder::class,
             TugSeeder::class,
             ReplySeeder::class,
+            PostTugSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
 

@@ -18,7 +18,7 @@ class ReplySeeder extends Seeder
     public function run(): void
     {
         DB::table('replies')->insert([
-            'reply' => Str::random(3),
+            'reply' => 'リプライ',
         ]);
     }
 }
