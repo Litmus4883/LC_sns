@@ -14,7 +14,7 @@ class TugSeeder extends Seeder
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         DB::table('tugs')->insert([
             'tug' => 'タグ１',
