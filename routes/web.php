@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\TugController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,10 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::controller(ReplyController::class)->group(function() {
     Route::post('/posts/{post}/replies', 'store');
     Route::get('/replies/{reply_id}', 'destroy');
+});
+
+Route::controller(TugController::class)->group(function() {
+    Route::get('/tugs/{tug}', 'index');
 });
 
 Route::middleware('auth')->group(function () {

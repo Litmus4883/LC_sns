@@ -14,4 +14,9 @@ class Tug extends Model
     {
         return $this->belongsToMany(Posts::class);
     }
+    
+    public function getByTug(int $limit_count = 5)
+    {
+     return $this->posts()->with('tug')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 }

@@ -22,10 +22,11 @@ return new class extends Migration
             $table->string('comment');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('user_id')->cascadeOnDelete()->default(1);
-            $table->foreignId('image_id')->cascadeOnDelete()->default(1);
-            $table->foreignId('reply_id')->cascadeOnDelete()->default(1);
-            $table->foreignId('tug_id')->cascadeOnDelete()->default(1);
+            $table->foreignId('user_id')->nullable()->cascadeOnDelete();
+            $table->foreignId('image_id')->nullable()->cascadeOnDelete();
+            $table->foreignId('reply_id')->nullable()->cascadeOnDelete();
+            $table->foreignId('tug_id')->nullable()
+            ->cascadeOnDelete();
         });
     }
 
