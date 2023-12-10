@@ -42,8 +42,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    
     public function replies()
     {
         return $this->hasMany(Reply::class);
+    }
+    
+    #フォロワー数を取得
+    public function followees()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id');
+    }
+    
+    #フォロー数を取得。自分がフォロワーで相手がフォローされる側
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id');
+    }
+    
+    public function modelUnFollow(Int $user_id)
+    {
+        return $this->followees()->detach($user_id);
+    }
+    
+    public function isFollowing(Int $user_id)
+    {
+        return $this->followees()->where('followee_id', $user_id)->exists();
     }
 }

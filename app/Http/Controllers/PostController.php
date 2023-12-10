@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-use App\Http\Requests\PostRequest;
 use App\Models\Tug;
+use App\Models\Image;
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\RedirectResponse;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -29,12 +31,28 @@ class PostController extends Controller
     }
     
     #Post $postで空のpostインスタンスを利用
-    public function store(PostRequest $request, Post $post): RedirectResponse
+    public function store(PostRequest $request, Post $post, Image $image): RedirectResponse
     {
         #$input = ['comment' => 'コメント']
         $input = $request['post'];
+        $input['user_id'] = auth()->user()->id;
         #create($input)とfill($input)->save()は同じ
         $post->fill($input)->save();
+        
+        if($request->hasfile('images')) {
+            $images = $request->file('images');
+            
+            foreach ($images as $imageFile) {
+                $image_url = Cloudinary::upload($imageFile->getRealPath())->getSecurePath();
+                #dd($image_url);
+                $image = new Image(['image_url' => $image_url]);
+                $image->save();
+                
+                $post->images()->attach($image->id);
+            }
+        }
+        
         return redirect('/posts/' . $post->id);
-    }
+        }
+    
 }

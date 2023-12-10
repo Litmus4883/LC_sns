@@ -19,6 +19,7 @@ class PostSeeder extends Seeder
     {
         DB::table('posts')->insert([
             'comment' => 'ポスト',
+            #'image_url' => 'https://res.cloudinary.com/dt45mbmuw/image/upload/v1701836800/lernzkv99ip8cn5zfi96.png',
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);

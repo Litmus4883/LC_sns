@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TugController;
+use App\Http\Controllers\FollowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,17 @@ Route::controller(TugController::class)->group(function() {
     Route::get('/tugs/{tug}', 'index');
 });
 
+Route::controller(FollowController::class)->group(function() {
+    Route::post('/follow/{user}', 'follow')->name('follow');
+    Route::delete('/unfollow/{user}', 'unfollow')->name('unfollow');
+    Route::get('/users/{user}', 'show')->name('users_profile.show');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
 });
 
 require __DIR__.'/auth.php';

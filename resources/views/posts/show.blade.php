@@ -15,7 +15,13 @@
             <div class='post'>
                 <h1>Body</h1>
                 <h1 class='comment'>{{ $post->comment }}</h1>
-                <div class='images'>{{ $post->image }}</div>
+                @if($post->images->isNotEmpty())
+                    <div class='images'>
+                        @foreach($post->images as $image)
+                            <img src="{{ $image->image_url }}" alt="画像が読み込めません。"/>
+                        @endforeach
+                    </div>
+                @endif
                 @foreach($post->tugs as $tug)
                     <a href="">{{ $tug->tug }}</a>
                 @endforeach

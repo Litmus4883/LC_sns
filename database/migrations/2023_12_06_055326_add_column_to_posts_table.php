@@ -13,15 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('images')){
-            return;
-        }
-        
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->string('image_url')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->foreignId('reply_id')->nullable()->constrained('replies')->cascadeOnDelete();
         });
     }
 
@@ -32,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::table('posts', function (Blueprint $table) {
+            //
+        });
     }
 };

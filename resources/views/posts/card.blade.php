@@ -9,7 +9,7 @@
                         @csrf
                         <input value="{{ $post->id }}" type="hidden" name="post_id" />
                         <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
-                        <input class="form-control reply-input border-0" placeholder="コメント ..." autocomplete="off" type="text" name="reply" />
+                        <input class="form-control reply-input border-0" placeholder="コメント" autocomplete="off" type="text" name="reply" />
                     </form>
                 </div>
             </div>
