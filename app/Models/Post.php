@@ -19,8 +19,15 @@ class Post extends Model
     #複数代入
     protected $fillable = [
         'comment',
+        'user_id',
         'tug_id',
     ];
+    
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
     public function replies()
     {
@@ -30,5 +37,10 @@ class Post extends Model
     public function tugs()
     {
         return $this->belongsToMany(Tug::class,'post_tug', 'post_id', 'tug_id');
+    }
+    
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
     }
 }

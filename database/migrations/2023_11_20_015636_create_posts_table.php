@@ -20,13 +20,10 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('comment');
+            #$table->string('image_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('user_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('image_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('reply_id')->nullable()->cascadeOnDelete();
-            $table->foreignId('tug_id')->nullable()
-            ->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
         });
     }
 

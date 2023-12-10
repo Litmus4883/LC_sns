@@ -17,6 +17,9 @@
             <!--ここの$postsはPostControllerで指定した変数-->
             @foreach ($posts as $post)
                 <div class='post'>
+                    <h2 class='user_name'>
+                        ユーザー名：<a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                    </h2>
                     <h2 class='comment'>
                         <a href="/posts/{{ $post->id }}">{{ $post->comment }}</a>
                     </h2>

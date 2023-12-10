@@ -12,17 +12,19 @@
         </x-slot>
     <body>
         <h1>Blog Name</h1>
-        <form action="/posts" method="post">
+        <form action="/posts" method="post" enctype="multipart/form-data">
             @csrf
             <div class='post'>
                 <div class='comment'>
-                    <h2>コメント</h2>
-                    <input type="text" name="post[comment]" placeholder="コメント" value="{{ old('post.comment') }}"/>
+                    <h2>本文</h2>
+                    <input type="text" name="post[comment]" placeholder="ポスト" value="{{ old('post.comment') }}"/>
                     <p class="comment_error" style="color:red">{{ $errors->first('post.comment') }}</p>
                 </div>
+                
                 <div class='image'>
-                    <h2>画像</h2>
+                    <input type="file" name="images[]" id="images" accept="image/*" multiple>
                 </div>
+                
                 <div class="tugs">
                     <h2>タグ</h2>
                     <select name="post[tug_id]">
@@ -31,7 +33,7 @@
                         @endforeach
                     </select>
                 </div>
-                <input type="submit" value="store"/>
+                <input type="submit" value="送信"/>
             </div>
         </form>
         <div class="footer">
