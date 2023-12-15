@@ -19,7 +19,8 @@ return new class extends Migration
         
         Schema::create('tugs', function (Blueprint $table) {
             $table->id();
-            $table->string('tug');
+            $table->string('name');
+            $table->timestamps();
         });
     }
 

@@ -63,7 +63,7 @@ class ProfileController extends Controller
     {
         $login_user = Auth::user();
         return view('profile.show')->with([
-            'user' => $user,
+            
             'login_user' => $login_user,
         ]);
     }

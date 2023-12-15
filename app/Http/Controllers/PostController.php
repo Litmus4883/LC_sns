@@ -30,15 +30,22 @@ class PostController extends Controller
         return view('posts.create')->with(['tugs' => $tug->get()]);
     }
     
-    #Post $postで空のpostインスタンスを利用
-    public function store(PostRequest $request, Post $post, Image $image): RedirectResponse
+    // Post $postで空のpostインスタンスを利用
+    public function store(PostRequest $request, Post $post, Tug $tug, Image $image)
     {
-        #$input = ['comment' => 'コメント']
+        // $input = ['comment' => 'コメント']
         $input = $request['post'];
         $input['user_id'] = auth()->user()->id;
-        #create($input)とfill($input)->save()は同じ
+        // create($input)とfill($input)->save()は同じ
         $post->fill($input)->save();
         
+        $tugData = $request['tug'];
+        $tug = Tug::firstOrCreate($tugData);
+        $tug->save();
+        
+        $post->tugs()->attach($tug->id);
+        $post->save();
+            
         if($request->hasfile('images')) {
             $images = $request->file('images');
             
@@ -54,5 +61,14 @@ class PostController extends Controller
         
         return redirect('/posts/' . $post->id);
         }
-    
+        
+        //public function store(PostRequest $request, Post $post, Tug $tug)
+        //{
+        //    $tugData = $request['tug'];
+        //  $tug = Tug::firstOrCreate($tugData);
+        //    $tug->save();
+            
+        //    $post->tugs()->attach($tug->id);
+         //   $post->save();
+        //}
 }

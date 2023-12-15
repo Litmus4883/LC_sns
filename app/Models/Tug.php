@@ -10,9 +10,13 @@ class Tug extends Model
 {
     use HasFactory;
     
-    public function Posts()
+    protected $fillable = [
+        'name',
+    ];
+    
+    public function posts()
     {
-        return $this->belongsToMany(Posts::class);
+        return $this->belongsToMany(Post::class);
     }
     
     public function getByTug(int $limit_count = 5)
