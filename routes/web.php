@@ -40,7 +40,7 @@ Route::controller(TugController::class)->group(function() {
 Route::controller(FollowController::class)->group(function() {
     Route::post('/follow/{user}', 'follow')->name('follow');
     Route::delete('/unfollow/{user}', 'unfollow')->name('unfollow');
-    Route::get('/users/{user}', 'show')->name('users_profile.show');
+    Route::get('/user/{user}', 'show')->name('users_profile.show');
 });
 
 Route::middleware('auth')->group(function () {

@@ -13,14 +13,13 @@ class Post extends Model
     
     public function getPaginateByLimit(int $limit_count = 3)
     {
-        return $this::orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::orderBy('created_at', 'DESC')->paginate($limit_count);
     }
     
     #複数代入
     protected $fillable = [
         'comment',
         'user_id',
-        'tug_id',
     ];
     
     
@@ -36,7 +35,7 @@ class Post extends Model
     
     public function tugs()
     {
-        return $this->belongsToMany(Tug::class,'post_tug', 'post_id', 'tug_id');
+        return $this->belongsToMany(Tug::class);
     }
     
     public function images()
