@@ -20,6 +20,7 @@ return new class extends Migration
         Schema::create('tugs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('post_id')->constrained();
             $table->timestamps();
         });
     }

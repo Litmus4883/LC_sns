@@ -1,0 +1,9 @@
+.pagination {
+    display: flex;
+}
+.small {
+    display: none;
+}
+/*.page-item span {
+    display: none;
+}*/

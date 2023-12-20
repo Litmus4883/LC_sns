@@ -1,5 +1,4 @@
 <x-app-layout>
-    
     <!-- name属性に代入される値は往々にして変数である-->
     <!-- したがって、ここでのheaderは$headerを指す-->
     <x-slot name="header">
@@ -21,19 +20,15 @@
             </div>
             <div id="preview"></div>
             <div class='tugs'>
+                
                 <h2>タグ付け</h2>
-                <input type="text" name="tug[name]" placeholder="タグ付け"/>
+                
+                <p class="add--btn">add form</p>
+            
+                <input type="text" class="add--form" name="tug[0]" placeholder="タグ付け"/>
+                <div class ="form--area"></div>
             </div>
             
-            <div class="tugs_select">
-                <h2>タグの選択</h2>
-                <!--<select name="tug[id]">
-                    foreach$tugs as $tug)
-                  
-                        <option value="{ $tug->id }}">{ $tug->name }}</option>
-                    endforeach
-                </select>-->
-            </div>
             <input type="submit" value="送信"/>
         </div>
     </form>
@@ -56,6 +51,19 @@
             fileReader.readAsDataURL(obj.files[i]);
         }
     }
+    
+    const btnEl = document.querySelector('.add--btn');
+        console.log(btnEl)
+        btnEl.addEventListener('click',() => {
+            const inputAllEl = document.querySelectorAll('.add--form');
+            const formArea =  document.querySelector('.form--area');
+            const createInputEl = document.createElement('input');
+            createInputEl.type="text"
+            createInputEl.placeholder="text"
+            createInputEl.className="add--form rounded-[10px]"
+            createInputEl.name=`tug[${inputAllEl.length}]`
+            formArea.appendChild(createInputEl);
+        })
     </script>
 
 </x-app-layout>
