@@ -35,7 +35,7 @@ class Post extends Model
     
     public function tugs()
     {
-        return $this->belongsToMany(Tug::class);
+        return $this->hasMany(Tug::class);
     }
     
     public function images()

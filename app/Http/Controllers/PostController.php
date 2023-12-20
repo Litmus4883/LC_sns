@@ -39,13 +39,13 @@ class PostController extends Controller
         // create($input)とfill($input)->save()は同じ
         $post->fill($input)->save();
         
-        $tugData = $request['tug'];
-        $tug = Tug::firstOrCreate($tugData);
-        $tug->save();
-        
-        $post->tugs()->attach($tug->id);
-        $post->save();
-            
+        foreach ($request->tug as $tug_content) {
+            $tug = new Tug();
+            $tug->name = $tug_content;
+            $tug->post_id = $post->id;
+            $tug->save();
+        }
+    
         if($request->hasfile('images')) {
             $images = $request->file('images');
             
