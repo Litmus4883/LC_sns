@@ -32,7 +32,9 @@
         </div>
         
         <!-- 画像-->
-        <div class="bg-blue-600 images w-[200px] h-[150px] "><img class="block"src="{{ $post->image }}"/></div>
+        <div class="bg-blue-600 images w-[200px] h-[150px] ">
+            <img class="block object-cover w-full h-full" src="{{ $post->images }}"/>
+        </div>
         
         @foreach($post->tugs as $tug)
         <!-- タグ-->

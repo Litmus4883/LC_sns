@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\TugController;
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::controller(FollowController::class)->group(function() {
     Route::delete('/unfollow/{user}', 'unfollow')->name('unfollow');
     Route::get('/user/{user}', 'show')->name('users_profile.show');
 });
+
+Route::post('/like', [LikeController::class, 'like']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
