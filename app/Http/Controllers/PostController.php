@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Tug;
 use App\Models\Image;
-use App\Http\Requests\PostRequest;
-use Illuminate\Http\RedirectResponse;
 use Cloudinary;
 
 class PostController extends Controller

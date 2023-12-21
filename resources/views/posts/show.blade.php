@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout><!-- -->
     
     <x-slot name="header">
         <h2>{{ __('投稿詳細') }}</h2>
@@ -19,8 +19,31 @@
             @endforeach
         </div>
         <div class="card-body line-height">
+            <!-- 作成日時-->
             <a class="light-color post-time no-text-decoration" href="/posts/{{ $post->id }}">{{ $post->created_at }}</a>
+            <!-- いいね-->
+            <div class="mt-10">
+                @auth
+                    @if($post->is_liked_by_auth_user())
+                        <i class="text-4xl like-toggle fas fa-heart liked" data-id="{{ $post->id }}"></i>
+                        <span class="like-counter">{{ $post->likes->count() }}</span>
+                    @else
+                        <i class="text-4xl like-toggle fas fa-heart" data-id="{{ $post->id }}"></i>
+                        <span class="text-4xl like-counter">{{ $post->likes->count() }}</span>
+                    @endif
+                @endauth
+                @guest
+                    @if($post->is_liked_by_auth_user())
+                        <a class="w-11 block"href="/login"><i class="w-full block like-toggle fas fa-heart liked" data-id="{{ $post->id }}"></i></a>
+                        <span class="like-counter">{{ $post->likes->count() }}</span>
+                    @else
+                        <a class="w-11"href="/login"><i class="w-full like-toggle fas fa-heart" data-id="{{ $post->id }}"></i></a>
+                        <span class="like-counter">{{ $post->likes->count() }}</span>
+                    @endif
+                @endguest
+            </div>
             <hr>
+            <!-- リプライ-->
             <div class="row actions" id="reply-form-post-{{ $post->id }}">
                 <form class="w-100" id="new_reply" action="/posts/{{ $post->id }}/replies" accept-charset="UTF-8" data-remote="true" method="post">
                     <input name="utf8" type="hidden" value="&#x2713;" />
@@ -44,4 +67,46 @@
         </div>
     <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
     
+    <script>
+    //DOMの読み込みが完了してから操作できるようにする
+    document.addEventListener('DOMContentLoaded', function() {
+        //いいねボタン要素取得（ここを押したらfetchへ行く）
+        const like = document.querySelector('.like-toggle');
+        //いいねを押したarticleのidを格納する変数が必要なので宣言
+        let likePostId;
+        like.addEventListener('click', function(e) {
+            let target = e.target;
+            console.log(target);
+            //いいねボタン要素に格納したデータ属性の記事idを取得
+            likePostId = target.getAttribute('data-id');
+            //fetchを使うことでURLにデータをアップロードすることができる。下記では
+            fetch('/like', {
+                //リクエスト形式
+                method: 'POST',
+                headers: {
+                    //Content-Typeでクライアントがサーバーに送ったデータの種類を伝える。今回はapplication/jsonでJSONファイルを指定
+                    'Content-Type': 'application/json',
+                    //正規のcsrfトークンであることを記載
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ post_id: likePostId })
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('ドンマイ');
+                }
+            })
+            .then(function(data) {
+                target.classList.toggle('liked');
+                target.nextElementSibling.innerHTML = data.likes_count;
+            })
+            .catch(function() {
+                console.log('fail');
+            });
+        });
+    })
+    </script>
+        
 </x-app-layout>
