@@ -4,9 +4,9 @@
         <h2>{{ __('投稿詳細') }}</h2>
     </x-slot>
     
-        <div class='post'>
-            <h1>Body</h1>
-            <h1 class='comment'>{{ $post->comment }}</h1>
+    <div class="bg-white p-6 w-3/4 mx-auto">
+        <div class="post">
+            <h1 class="comment m-4">{{ $post->comment }}</h1>
             @if($post->images->isNotEmpty())
                 <div class='images'>
                     @foreach($post->images as $image)
@@ -15,21 +15,21 @@
                 </div>
             @endif
             @foreach($post->tugs as $tug)
-                <a href="">{{ $tug->name }}</a>
+                <a class="bg-white border-gray-200 border m-2 p-2 inline-block rounded-xl" href="">{{ $tug->name }}</a>
             @endforeach
         </div>
         <div class="card-body line-height">
             <!-- 作成日時-->
             <a class="light-color post-time no-text-decoration" href="/posts/{{ $post->id }}">{{ $post->created_at }}</a>
             <!-- いいね-->
-            <div class="mt-10">
+            <div class="m-4">
                 @auth
                     @if($post->is_liked_by_auth_user())
                         <i class="text-4xl like-toggle fas fa-heart liked" data-id="{{ $post->id }}"></i>
-                        <span class="like-counter">{{ $post->likes->count() }}</span>
+                        <span class="like-counter text-2xl">{{ $post->likes->count() }}</span>
                     @else
                         <i class="text-4xl like-toggle fas fa-heart" data-id="{{ $post->id }}"></i>
-                        <span class="text-4xl like-counter">{{ $post->likes->count() }}</span>
+                        <span class="text-2xl like-counter">{{ $post->likes->count() }}</span>
                     @endif
                 @endauth
                 @guest
@@ -45,14 +45,14 @@
             <hr>
             <!-- リプライ-->
             <div class="row actions" id="reply-form-post-{{ $post->id }}">
-                <form class="w-100" id="new_reply" action="/posts/{{ $post->id }}/replies" accept-charset="UTF-8" data-remote="true" method="post">
+                <form class="" id="new_reply" action="/posts/{{ $post->id }}/replies" accept-charset="UTF-8" data-remote="true" method="post">
                     <input name="utf8" type="hidden" value="&#x2713;" />
                     @csrf
                     <input value="{{ $post->id }}" type="hidden" name="post_id" />
                     <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
-                    <input class="form-control reply-input border-0" placeholder="リプライ" autocomplete="off" type="text" name="reply" />
+                    <input class="form-control reply-input" placeholder="リプライ" autocomplete="off" type="text" name="reply" />
                     <p>
-                        <input type="submit" value="送信"/>
+                        <input class="bg-pink-100 my-2 py-1 px-3 rounded" type="submit" value="送信"/>
                     </p>
                 </form>
             </div>
@@ -62,10 +62,12 @@
             <p>{{ $reply->reply}}</p>
             @endforeach
         </div>
-        <div class="footer">
-            <a href="/">戻る</a>
-        </div>
-    <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
+    </div>
+    
+    <div class="bg-white footer pl-2">
+        <a href="/">戻る</a>
+        <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
+    </div>
     
     <script>
     //DOMの読み込みが完了してから操作できるようにする
