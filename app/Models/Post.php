@@ -11,7 +11,7 @@ class Post extends Model
     use HasFactory;
     
     
-    public function getPaginateByLimit(int $limit_count = 3)
+    public function getPaginateByLimit(int $limit_count = 6)
     {
         return $this::orderBy('created_at', 'DESC')->paginate($limit_count);
     }
