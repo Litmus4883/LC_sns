@@ -3,23 +3,24 @@
     <!-- name属性に代入される値は往々にして変数である-->
     <!-- したがって、ここでのheaderは$headerを指す-->
     <x-slot name="header">
-        <h2>{{ __('投稿作成') }}</h2>
+        <h2>{{ __('編集画面') }}</h2>
     </x-slot>
     
     <div class="bg-white post_parent p-6 w-3/4 mx-auto">
-    <form action="/posts" method="POST" enctype="multipart/form-data">
+    <form action="/posts/{{ $post->id }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <!-- 投稿全体-->
         <div class="post">
             <!-- 本文-->
             <div class="comment ">
-                <input class="w-full my-2 mt-8" type="text" name="post[comment]" placeholder="ポスト" value="{{ old('post.comment') }}"/>
+                <input class="w-full my-2 mt-8" type="text" name="post[comment]" placeholder="ポスト" value="{{ $post->comment }}"/>
                 <p class="comment_error" style="color:red">{{ $errors->first('post.comment') }}</p>
             </div>
             
             <!-- 画像-->
             <div class="images ">
-                <input class="my-2" type="file" name="images[]" accept="image/*" multiple onchange="loadImage(this);">
+                <input class="my-2" value="{{ $post->image_url }}" type="file" name="images[]" accept="image/*" multiple onchange="loadImage(this);">
             <!-- プレビュー表示-->
                 <div id="preview"></div>
             </div>
@@ -32,7 +33,7 @@
             </div>
             
             <!-- 送信ボタン-->
-            <input class="bg-pink-100 my-2 py-1 px-3 rounded" type="submit" value="送信"/>
+            <input class="bg-pink-100 my-2 py-1 px-3 rounded" type="submit" value="更新"/>
         </div>
     </form>
     
@@ -73,5 +74,3 @@
     </script>
 
 </x-app-layout>
-    
-    

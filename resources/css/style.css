@@ -4,6 +4,10 @@
 .small {
     display: none;
 }
+
+.liked {
+    color: red;
+}
 /*.page-item span {
     display: none;
 }*/

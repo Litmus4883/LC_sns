@@ -51,9 +51,13 @@
                     <input value="{{ $post->id }}" type="hidden" name="post_id" />
                     <input value="{{ Auth::id() }}" type="hidden" name="user_id" />
                     <input class="form-control reply-input" placeholder="リプライ" autocomplete="off" type="text" name="reply" />
-                    <p>
+                    
+                    <div class="edit bg-pink-100 my-2 px-3 py-1 rounded">
+                        <a class="" href="/posts/{{ $post->id }}/edit">編集</a>
+                    </div>
+                    <div>
                         <input class="bg-pink-100 my-2 py-1 px-3 rounded" type="submit" value="送信"/>
-                    </p>
+                    </div>
                 </form>
             </div>
         </div>
