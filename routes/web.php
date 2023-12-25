@@ -27,6 +27,8 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/create', 'create')->name('create');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts', 'store')->name('store');
+    Route::get('/posts/{post}/edit', 'edit')->name('edit');
+    Route::put('/posts/{post}', 'update')->name('update');
 });
 
 Route::controller(ReplyController::class)->group(function() {

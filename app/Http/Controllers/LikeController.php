@@ -11,7 +11,7 @@ class LikeController extends Controller
 {
     public function like(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         
         $user_id = Auth::id();
         $post_id = $request->post_id;
