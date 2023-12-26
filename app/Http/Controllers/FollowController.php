@@ -23,7 +23,7 @@ class FollowController extends Controller
         $follow->follower_id = \Auth::id();
         $follow->followee_id = $user->id;
         $follow->save();
-        return redirect('/users/'. $user->id);
+        return redirect('/user/'. $user->id);
     }
     
     public function unfollow(User $user, Follow $follow)
@@ -35,6 +35,6 @@ class FollowController extends Controller
             $followee->modelUnFollow($user->id);
         }
         
-        return redirect('/users/'. $user->id);
+        return redirect('/user/'. $user->id);
     }
 }
