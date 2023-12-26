@@ -16,7 +16,7 @@
                     <button class="mt-5 bg-black text-white p2 rounded-md" type="submit">フォロー中</button>
                 </form>
             @else
-                <form action="/follow/{{$user->id}}" method=POST>
+                <form action="/follow/{{$user->id}}" method="POST">
                     @csrf
                     <button class="mt-5 bg-black text-white p-2 rounded-md" type="submit">フォローする</button>
                 </form>
