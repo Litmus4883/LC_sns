@@ -5,7 +5,7 @@
     </x-slot>
     
     <!-- ダッシュボードの下の余白-->
-    <div class="bg-white py-5">
+    <div class="bg-red-500 py-5">
         <!-- -->
         <div class=" relative max-w-4xl mx-auto " style="content-center padding-bottom: 100%; width: 100%;">
             <!-- 絶対値の完全な円形-->
