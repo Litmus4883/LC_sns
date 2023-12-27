@@ -67,8 +67,7 @@
             @endforeach
         </div>
     </div>
-    
-    <div class="bg-white footer pl-2">
+    <div class="bg-white footer py-2 pl-2">
         <a href="/">戻る</a>
         <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
     </div>

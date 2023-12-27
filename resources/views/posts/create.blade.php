@@ -35,10 +35,8 @@
             <input class="bg-pink-100 my-2 py-1 px-3 rounded" type="submit" value="送信"/>
         </div>
     </form>
-    
     </div>
-    
-    <div class="bg-white footer pl-2">
+    <div class="bg-white footer py-2 pl-2">
         <a href="/">戻る</a>
         <h2>ログインユーザー：{{ Auth::user()->name}}</h2>
     </div>
