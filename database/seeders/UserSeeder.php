@@ -18,13 +18,14 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         DB::table('users')->insert([
-            'name' => Str::random(3),
-            'email' => Str::random(3). '@'. Str::random(3),
-            'password' => Hash::make('password'),
-            'declaration' => Str::random(3),
+            'name' => 'ともなが',
+            'email' => 'tomonaga@example.com',
+            'password' => 'tomonaga1104',
+            // Hash::make('secure_password'),
+            'declaration' => 'Some declaration text',
         ]);
     }
 }
