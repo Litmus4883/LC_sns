@@ -19,8 +19,8 @@ return new class extends Migration
         
         Schema::create('image_post', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('image_id')->nullable()->constrained('images')->cascadeOnDelete();
-            $table->foreignId('post_id')->nullable()->constrained('posts')->cascadeOnDelete();          
+            $table->foreignId('image_id')->constrained('images')->cascadeOnDelete();
+            $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();          
             #$table->primary('image_id', 'post_id');
         });
     }

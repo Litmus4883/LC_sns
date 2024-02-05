@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->foreignId('reply_id')->nullable()->constrained('replies')->cascadeOnDelete();
+            $table->foreignId('image_id')->nullable()->constrained('images')->cascadeOnDelete();
         });
     }
 

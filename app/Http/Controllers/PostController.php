@@ -36,6 +36,7 @@ class PostController extends Controller
         // $input = ['comment' => 'コメント']
         $input = $request['post'];
         $input['user_id'] = auth()->user()->id;
+        # dump($input);
         // create($input)とfill($input)->save()は同じ
         $post->fill($input)->save();
         
