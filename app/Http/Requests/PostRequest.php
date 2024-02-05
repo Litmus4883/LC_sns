@@ -27,6 +27,7 @@ class PostRequest extends FormRequest
     {
         return [
             'post.comment' => 'required',
+            # '変数' => でルールを指定
         ];
     }
 }

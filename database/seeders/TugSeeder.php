@@ -17,11 +17,13 @@ class TugSeeder extends Seeder
     public function run()
     {
         DB::table('tugs')->insert([
-            'tug' => 'タグ１',
+            'name' => 'タグ１',
+            'post_id' => 1,
         ]);
         
         DB::table('tugs')->insert([
-            'tug' => 'タグ２',
+            'name' => 'タグ２',
+            'post_id' => 1,
         ]);
     }
 }

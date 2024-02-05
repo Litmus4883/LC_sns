@@ -15,10 +15,10 @@ class ImageSeeder extends Seeder
      *
      * @return void
      */
-    public function run(): void
+    public function run()
     {
         DB::table('images')->insert([
-            'image_path' => Str::random(3),
+            'image_url' => 'https://res.cloudinary.com/dt45mbmuw/image/upload/v1701836800/lernzkv99ip8cn5zfi96.png',
         ]);
     }
 }
