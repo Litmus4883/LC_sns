@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             TugSeeder::class,
             ReplySeeder::class,
             // PostTugSeeder::class,
-            
+            ImagePostSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
