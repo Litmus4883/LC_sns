@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {   
         Schema::create('follows', function (Blueprint $table) {
+            $table->primary(['follower_id', 'followee_id']);
             $table->foreignId('follower_id')->constraint('users')
                 ->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('followee_id')->constraint('users')
                 ->cascadeOnUpdate()->cascadeOnDelete();
-            $table->primary(['follower_id', 'followee_id']);
         });
     }
 
